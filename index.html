@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO192 — Java OOP Learning Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 900: "#12141B", 800: "#1B1F2A", 700: "#262B38", 600: "#3A4152", 500: "#5B6373" },
+          paper: "#F7F7F5",
+          accent: { DEFAULT: "#E8973A", dark: "#C97B22", light: "#FBD9AC" },
+          done: "#2FA97A",
+        },
+        fontFamily: {
+          display: ["'Space Grotesk'", "sans-serif"],
+          body: ["'Inter'", "sans-serif"],
+          mono: ["'JetBrains Mono'", "monospace"],
+        },
+        maxWidth: { prose: "42rem" },
+      },
+    },
+  };
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background-color: #F7F7F5; color: #1B1F2A; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; color: #12141B; }
+  a { transition: color .15s ease, background-color .15s ease, border-color .15s ease; }
+
+  .nav-link { display: flex; align-items: center; gap: .625rem; border-radius: .5rem; padding: .5rem .75rem; font-size: .875rem; color: rgba(255,255,255,.7); }
+  .nav-link:hover { background: rgba(255,255,255,.05); color: #fff; }
+  .nav-link.active { background: rgba(255,255,255,.1); color: #fff; font-weight: 500; }
+
+  .prose-lesson h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 1rem; scroll-margin-top: 6rem; }
+  .prose-lesson h3 { font-size: 1.125rem; font-weight: 600; margin-top: 2rem; margin-bottom: .75rem; scroll-margin-top: 6rem; }
+  .prose-lesson h4 { font-size: 1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: .5rem; scroll-margin-top: 6rem; }
+  .prose-lesson p { font-size: .9375rem; line-height: 1.75rem; color: #3A4152; margin-bottom: 1rem; }
+  .prose-lesson ul { list-style: disc; list-style-position: outside; padding-left: 1.25rem; margin-bottom: 1rem; }
+  .prose-lesson ul, .prose-lesson ol { font-size: .9375rem; line-height: 1.75rem; color: #3A4152; }
+  .prose-lesson ul > li, .prose-lesson ol > li { margin-bottom: .375rem; }
+  .prose-lesson ol { list-style: decimal; list-style-position: outside; padding-left: 1.25rem; margin-bottom: 1rem; }
+  .prose-lesson img { border-radius: .5rem; border: 1px solid rgba(0,0,0,.05); margin: 1.25rem 0; max-width: 100%; }
+  .prose-lesson figure { margin: 0; }
+
+  .note-box { margin: 1.25rem 0; border-radius: .5rem; border-left: 4px solid #E8973A; background: rgba(251,217,172,.3); padding: .75rem 1rem; font-size: .875rem; line-height: 1.5rem; color: #1B1F2A; }
+
+  .code-block { position: relative; margin: 1.25rem 0; overflow-x: auto; border-radius: .5rem; background: #12141B; color: #f1f5f9; font-family: 'JetBrains Mono', monospace; font-size: .8125rem; line-height: 1.5rem; padding: 1rem 3rem 1rem 1rem; }
+  .copy-btn { position: absolute; right: .75rem; top: .75rem; border-radius: .375rem; background: rgba(255,255,255,.1); padding: .25rem .5rem; font-size: 11px; color: rgba(255,255,255,.7); border: none; cursor: pointer; }
+  .copy-btn:hover { background: rgba(255,255,255,.2); color: #fff; }
+
+  .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: .5rem; background: #E8973A; padding: .5rem 1rem; font-size: .875rem; font-weight: 500; color: #12141B; }
+  .btn-primary:hover { background: #C97B22; color: #fff; }
+  .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: .5rem; border: 1px solid rgba(0,0,0,.1); background: #fff; padding: .5rem 1rem; font-size: .875rem; font-weight: 500; color: #1B1F2A; }
+  .btn-secondary:hover { border-color: #E8973A; color: #C97B22; }
+
+  .card { border-radius: .75rem; border: 1px solid rgba(0,0,0,.05); background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+
+  #sidebar-wrap { transition: transform .2s ease; }
+  @media (min-width: 1024px) { #sidebar-wrap { transform: none !important; } }
+</style>
+</head>
+<body class="font-body text-ink-800">
+
+  <!-- mobile top bar -->
+  <div class="lg:hidden sticky top-0 z-30 flex items-center gap-3 bg-ink-800 px-4 py-3">
+    <button id="menu-btn" aria-label="Open menu" class="text-white/80 hover:text-white">
+      <svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
+    </button>
+    <span class="flex h-7 w-7 items-center justify-center rounded-md bg-accent text-ink-900 font-display font-bold text-xs">P2</span>
+    <span class="font-display font-semibold text-white text-sm">PRO192</span>
+  </div>
+
+  <div id="overlay" class="hidden fixed inset-0 bg-black/40 z-30 lg:hidden"></div>
+
+  <div class="lg:flex min-h-screen">
+    <!-- sidebar -->
+    <div id="sidebar-wrap" class="-translate-x-full lg:translate-x-0 fixed lg:sticky top-0 lg:top-0 left-0 h-screen w-72 shrink-0 bg-ink-800 z-40 overflow-y-auto">
+      <div id="sidebar"></div>
+    </div>
+
+    <!-- main -->
+    <main id="page" class="flex-1 min-w-0"></main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
